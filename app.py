@@ -283,9 +283,9 @@ def questionario(etapa):
 
     return render_template('questionario/pergunta.html', etapa=etapa, pergunta=pergunta, opcoes=opcoes, ultima_etapa=(etapa == 3))
 
-@app.route('/inicio')
-def inicio():
-    return render_template('inicio.html')
+@app.route('/index')
+def index():
+    return render_template('index.html')
 
 def login_required(f):
     @wraps(f)
