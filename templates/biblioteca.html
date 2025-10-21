@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca de Repertórios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/biblioteca.css') }}">
+    <link rel="icon" href="/static/img/logo laranja.png">
+</head>
+<body>
+    <header>
+        <button id="menu-btn">&#9776;</button>
+        <p class="logo"><span>Study</span>Fox</p>
+        <p class="texto">Biblioteca de Repertórios</p>
+        <div class="user-container">
+            <img
+            class="perfil-pequeno"
+            src="{{ foto_perfil if foto_perfil else url_for('static', filename='img/fotosperfil/perfil2.png') }}?{{ random() }}"
+            alt="Foto de Perfil">
+            <p class="user">{{ username }}</p>
+        </div>
+    </header>
+
+    <div id="sidebar" class="sidebar">
+        <ul>
+            <li>
+                <a href="{{ url_for('welcome') }}" title="Aprender">
+                    <i class="fas fa-book"></i>
+                    <span class="sidebar-text">Aprender</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('biblioteca') }}" title="Biblioteca">
+                    <i class="fas fa-book-open"></i>
+                    <span class="sidebar-text">Biblioteca</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('conquistas') }}" title="Conquistas">
+                    <i class="fas fa-bullseye"></i>
+                    <span class="sidebar-text">Conquistas</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('perfil') }}" title="Perfil">
+                    <i class="fas fa-user"></i>
+                    <span class="sidebar-text">Perfil</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <main class="main-content">
+    <button id="sound-btn" class="sound-btn">
+        <i id="sound-icon" class="fas fa-volume-up"></i>
+    </button>
+        <div class="repertorio-tabs">
+            <button class="tab-btn active" onclick="showCategory('filmes', event)">Filmes</button>
+            <button class="tab-btn" onclick="showCategory('series', event)">Séries</button>
+            <button class="tab-btn" onclick="showCategory('livros', event)">Livros</button>
+            <button class="tab-btn" onclick="showCategory('dados', event)">Dados</button>
+        </div>
+
+        <div id="filmes" class="galeria categoria">
+            <div class="filme"
+                onclick="showDetails('Her (2013)','/static/img/repertorios/filmes/Her.png', 'Spike Jonze','Comédia dramática, ficção científica e romance',
+                'Filme que mostra um homem que desenvolve um relacionamento com uma inteligência artificial. Representa o isolamento emocional causado pela substituição de relações reais por digitais.')">
+                <img src="/static/img/repertorios/filmes/Her.png" alt="Filme: Her">
+                <p>Her</p>
+            </div>
+            <div class="filme"
+                onclick="showDetails('O Dilema das Redes (2020)','/static/img/repertorios/filmes/ODilemadasRedes.png', 'Jeff Orlowski', 'Documentário',
+                'Documentário que revela como redes sociais manipulam usuários com algoritmos que geram dependência, afetando a saúde mental.')">
+                <img src="/static/img/repertorios/filmes/ODilemadasRedes.png" alt="Filme: O Dilema das Redes">
+                <p>O Dilema das Redes</p>
+            </div>
+            <div class="filme"
+                onclick="showDetails('Videodrome (1983)', '/static/img/repertorios/filmes/Videodrome.png', 'David Cronenberg', 'Terror, Ficção Científica', 
+                'Filme cult que aborda a influência da mídia e da tecnologia na mente humana e na percepção da realidade.')">
+                <img src="/static/img/repertorios/filmes/Videodrome.png" alt="Filme: Videodrome">
+                <p>Videodrome</p>
+            </div>
+            <div class="filme"
+                onclick="showDetails('Wall-E (2008)', '/static/img/repertorios/filmes/walle.png', 'Andrew Stanton', 'Animação, Ficção Científica, Família',
+                'Mostra humanos dependentes de telas e tecnologia, sem contato entre si ou com o ambiente ao redor — metáfora visual do sedentarismo e da alienação moderna.')">
+                <img src="/static/img/repertorios/filmes/walle.png" alt="Filme: Wall-E">
+                <p>Wall-E</p>
+            </div>
+        </div>
+
+        <div id="series" class="galeria categoria" style="display: none;">
+            <div class="filme"
+                onclick="showDetails('Black Mirror (Netflix)', '/static/img/repertorios/series/BlackMirror.png', 'Diversos diretores', 'Antologia, Ficção Científica, Drama',
+                'Série antológica que explora os impactos negativos da tecnologia. Episódios como “Nosedive” (S03E01) e “Smithereens” (S05E02) mostram como a obsessão com redes sociais e telas pode levar à ansiedade, baixa autoestima e colapso mental.')">
+                <img src="/static/img/repertorios/series/BlackMirror.png" alt="Série: Black Mirror">
+                <p>Black Mirror</p>
+            </div>
+            <div class="filme"
+                onclick="showDetails('Euphoria (HBO)', '/static/img/repertorios/series/euphoria.png', 'Sam Levinson', 'Drama', 
+                'Aborda temas como depressão e ansiedade em jovens, muitas vezes agravados por exposição a redes sociais e à cultura da comparação.')">
+                <img src="/static/img/repertorios/series/euphoria.png" alt="Série: Euphoria">
+                <p>Euphoria</p>
+            </div>
+        </div>
+
+        <div id="livros" class="galeria categoria" style="display: none;">
+            <div class="filme"
+                onclick="showDetails('Sociedade do Cansaço (2015)', '/static/img/repertorios/livros/SociedadedoCansaco.png', 'Byung-Chul Han', 'Filosofia', 
+                'Análise filosófica que mostra como a hiperexposição e o excesso de estímulos (como o uso de telas) geram esgotamento mental e emocional.')">
+                <img src="/static/img/repertorios/livros/SociedadedoCansaco.png" alt="Livro: Sociedade do Cansaço">
+                <p>Sociedade do Cansaço</p>
+            </div>
+            <div class="filme"
+                onclick="showDetails('1984 (1949)', '/static/img/repertorios/livros/1984.png', 'George Orwell', 'Distopia, Ficção Científica', 
+                'Aborda a vigilância constante através de telas (teletelas), o que pode ser comparado à sensação de vigilância digital contemporânea.')">
+                <img src="/static/img/repertorios/livros/1984.png" alt="Livro: 1984">
+                <p>1984</p>
+            </div>
+            <div class="filme"
+                onclick="showDetails('Admirável Mundo Novo (1932)', '/static/img/repertorios/livros/admmundonovo.png', 'Aldous Huxley', 'Distopia, Ficção Científica', 
+                'Aponta uma sociedade alienada por prazeres imediatos e distrações, como o entretenimento incessante — o que se aproxima da lógica das redes sociais.')">
+                <img src="/static/img/repertorios/livros/admmundonovo.png" alt="Livro: Admirável Mundo Novo">
+                <p>Admirável Mundo Novo</p>
+            </div>
+            <div class="filme"
+                onclick="showDetails('Modernidade Líquida (1999)', '/static/img/repertorios/livros/modernLiq.png', 'Zygmunt Bauman', 'Sociologia, Filosofia', 
+                'Discussão sobre a fluidez das relações e da identidade na era digital e o impacto nas relações humanas.')">
+                <img src="/static/img/repertorios/livros/modernLiq.png" alt="Livro: Modernidade Líquida">
+                <p>Modernidade Líquida</p>
+            </div>
+            <div class="filme" onclick="showDetails('A Sociedade do Espetáculo (1967)', '/static/img/repertorios/livros/sociEsp.png', 'Guy Debord', 'Filosofia, Sociologia', 
+                'Crítica à sociedade midiática e ao consumo de imagens que alienam e distraem as pessoas.')">
+                <img src="/static/img/repertorios/livros/sociEsp.png" alt="Livro: A Sociedade do Espetáculo">
+                <p>A Sociedade do Espetáculo</p>
+            </div>
+        </div>
+
+        <div id="dados" class="galeria categoria" style="display: none;">
+            <div class="filme"
+                onclick="showDetailsDados('Universidade Federal de Minas Gerais (2023)',
+                'https://repositorio.ufmg.br/server/api/core/bitstreams/90b1b55c-e3b6-4f42-b3cc-b81bb976cbd3/content',
+                '/static/img/repertorios/dados/ufmg.png',
+                'O uso excessivo de telas prejudica a saúde mental em todas as idades, com maior prevalência de depressão em crianças. Em adultos e idosos, o uso exagerado está associado a quadros de nomofobia, o medo de ficar sem o celular.',
+                'As associações entre tempo de tela e saúde mental no ciclo vital'
+                )">
+                <img src="/static/img/repertorios/dados/ufmg.png" alt="Órgão: Universidade Federal de Minas Gerais">
+                <p>UFMG</p>
+            </div>
+            <div class="filme"
+                onclick="showDetailsDados('Universidade Federal da Paraíba (2024)', 
+                'https://repositorio.ufpb.br/jspui/bitstream/123456789/31316/1/NVF29072024.pdf',
+                '/static/img/repertorios/dados/ufpb.png',
+                'O tempo prolongado de exposição a telas afeta negativamente o desempenho de estudantes universitários. O principal fator de prejuízo é a diminuição significativa na qualidade do sono, essencial para a consolidação da memória e a concentração.',
+                'Uso excessivo de telas e desempenho acadêmico: Impactos entre estudantes universitários'
+                )">
+                <img src="/static/img/repertorios/dados/ufpb.png" alt="Universidade Federal da Paraíba">
+                <p>UFPB</p>
+            </div>
+            <div class="filme"
+                onclick="showDetailsDados('Universidade de São Paulo (2023)', 
+                'https://rsp.fsp.usp.br/article/insomnia-symptoms-during-the-covid-19-pandemic-a-case-control-study/',
+                '/static/img/repertorios/dados/usp.png',
+                'Uma análise de sintomas de insônia durante a pandemia revelou que dormir pouco (menos de seis horas) e sentir tristeza frequentemente são fortes preditores. Isso confirmou a associação entre problemas de saúde mental e distúrbios do sono. ',
+                'Sintomas de insônia durante a pandemia de covid-19: um estudo caso-controle'
+                )">
+                <img src="/static/img/repertorios/dados/usp.png" alt="Universidade de São Paulo">
+                <p>USP</p>
+            </div>
+        </div>
+
+        <div id="modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2 id="modal-title"></h2>
+                </div>
+                <p id="modal-director" class="modal-director"></p>
+                <p id="modal-genres" class="modal-genres"></p>
+                <p id="modal-source" class="modal-source hidden"></p>
+                <br>    
+                <div class="modal-body">
+                    <img id="modal-image" src="" alt="">
+                    <div class="modal-description">
+                        <p id="modal-description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <audio id="background-audio" autoplay loop>
+        <source src="{{ url_for('static', filename='audio/audio.mp3') }}" type="audio/mpeg">
+        Seu navegador não suporta a tag de áudio.
+    </audio>
+    </main>
+    
+
+
+
+    <script src="/static/script/biblioteca.js"></script>
+
+</body>
+
+</html>

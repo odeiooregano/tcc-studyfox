@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #6b3e6b;
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #e07e44;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #d67433;
+}
+
+.hero {
+    background: linear-gradient(135deg, #844a96, #2c3e50);
+    color: white;
+    padding: 5rem 20px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Sobre o Curso */
+.course-info {
+    padding: 5rem 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.2rem;
+    color: #9e3d8e;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: #b342ad;
+    margin-bottom: 1.5rem;
+}
+
+.feature-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #8f4f8c;
+}
+
+/* Instrutor */
+.instructor {
+    background-color: #ecf0f1;
+    padding: 5rem 20px;
+    text-align: center;
+}
+
+.instructor-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.instructor-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #3498db;
+    margin-bottom: 1.5rem;
+}
+
+.instructor h2 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.instructor-title {
+    color: #7f8c8d;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+/* Rodapé */
+footer {
+    background-color: #6b3e6b;
+    color: white;
+    text-align: center;
+    padding: 2rem 20px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.footer-links li {
+    margin: 0 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+   
+    .logo {
+        margin-bottom: 1rem;
+    }
+   
+    .nav-links {
+        margin-top: 1rem;
+    }
+   
+    .nav-links li {
+        margin: 0 10px;
+    }
+   
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+}
+
+.cartoon-tree {
+    position: relative;
+    width: 100px;
+    height: 200px;
+    margin: 50px auto;
+  }
+  
+  .trunk {
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+    width: 20px;
+    height: 60px;
+    background-color: #8B5A2B;
+    border-radius: 5px;
+  }
+  
+  .leaves {
+    position: absolute;
+    background-color: #228B22;
+    border-radius: 50%;
+  }
+  
+  .leaf1 {
+    width: 80px;
+    height: 80px;
+    bottom: 50px;
+    left: 10px;
+  }
+  
+  .leaf2 {
+    width: 70px;
+    height: 70px;
+    bottom: 90px;
+    left: 15px;
+  }
+  
+  .leaf3 {
+    width: 60px;
+    height: 60px;
+    bottom: 120px;
+    left: 20px;
+  }
+  

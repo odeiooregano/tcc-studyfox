@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
+  <link rel="icon" href="/static/img/logo laranja.png">
+</head>
+
+<body>
+  <header>
+    <button id="menu-btn">&#9776;</button>
+    <p class="logo"><span>Study</span>Fox</p>
+    <p class="texto">Perfil</p>
+    <div class="user-container">
+      <img 
+      class="perfil-pequeno"
+      src="{{ foto_perfil if foto_perfil else url_for('static', filename='img/fotosperfil/perfil2.png') }}?{{ random() }}"
+      alt="Foto de Perfil">
+      <p class="user">{{ username }}</p>
+    </div>
+  </header>
+
+  <div id="sidebar" class="sidebar">
+    <ul>
+      <li>
+        <a href="{{ url_for('welcome') }}" title="Aprender">
+          <i class="fas fa-book"></i>
+          <span class="sidebar-text">Aprender</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('biblioteca') }}" title="Biblioteca">
+          <i class="fas fa-book-open"></i>
+          <span class="sidebar-text">Biblioteca</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('conquistas') }}" title="Conquistas">
+          <i class="fas fa-bullseye"></i>
+          <span class="sidebar-text">Conquistas</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('perfil') }}" title="Perfil">
+          <i class="fas fa-user"></i>
+          <span class="sidebar-text">Perfil</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <main>
+    <div class="perfil-wrapper">
+      <div class="container perfil" id="perfilContainer">
+        <div class="cabecalho-perfil">
+          <h2>Perfil</h2>
+          <img class="foto-perfil" 
+          id="fotoPerfilVisualizacao"  
+          src="{{ foto_perfil if foto_perfil else url_for('static', filename='img/fotosperfil/perfil2.png') }}?{{ random() }}"
+          alt="Foto de Perfil">
+        </div>
+
+        <label for="username">Nome de Usuário</label>
+        <input type="text" id="username" name="username" value="{{ username }}" readonly />
+
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" value="{{ email }}" readonly />
+
+        <button class="btn-editar" onclick="abrirEdicao()">Editar perfil</button>
+
+        <div class="progresso">
+          <h3>Progresso</h3>
+
+          <div class="etapa">
+            <p>Introdução</p>
+            <div class="barra">
+              <div class="preenchido" style="width: 10%;"></div>
+            </div>
+          </div>
+          <div class="etapa">
+            <p>Desenvolvimento</p>
+            <div class="barra">
+              <div class="preenchido" style="width: 0%;"></div>
+            </div>
+          </div>
+          <div class="etapa">
+            <p>Conclusão</p>
+            <div class="barra">
+              <div class="preenchido" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rodape">
+          <a href="{{ url_for('logout') }}">
+            <button type="button" class="sair">Sair</button>
+          </a>
+        </div>
+      </div>
+
+
+      <form class="container editar-perfil" id="editarPerfil" method="POST" action="{{ url_for('perfil') }}" enctype="multipart/form-data">
+        <div class="cabecalho-perfil">
+          <h2>Editar perfil</h2>
+          <img class="foto-perfil" 
+          id="fotoPerfilEdicao" 
+          src="{{ foto_perfil if foto_perfil else url_for('static', filename='img/fotosperfil/perfil2.png') }}?{{ random() }}"
+          alt="Foto de Perfil">
+        </div>
+
+          <label for="foto-upload" class="trocar-foto">Trocar foto</label>
+          <input type="file" id="foto-upload" name="foto" accept="image/*" style="display: none;">
+
+          <label for="edit-username">Nome de Usuário</label>
+          <input type="text" id="edit-username" name="edit-username" required />
+
+          <label for="edit-email">E-mail</label>
+          <input type="email" id="edit-email" name="edit-email" required />
+
+          <label for="edit-password">Senha Atual</label>
+          <input type="password" id="password" name="password" placeholder="******" />
+          
+          <label for="edit-password">Nova Senha</label> 
+          <input type="password" id="edit-password" name="edit-password" placeholder="******" />
+          
+        <div class="divbotoes">
+          <button class="btn-concluir" type="submit">Concluir Edição</button>
+          <button class="btn-cancelar" type="button" onclick="fecharEdicao()">Cancelar</button>
+          <button class="excluir" type="button" onclick="excluirConta()">Excluir Conta</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="/static/script/perfil.js"></script>
+
+</body>
+
+</html>

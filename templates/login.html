@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="icon" href="/static/img/logo laranja.png">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="tabs">
+            <a href="{{ url_for('login') }}" class="tab {% if active_page == 'login' %}active{% endif %}">Login</a>
+            <a href="{{ url_for('register') }}"
+                class="tab {% if active_page == 'register' %}active{% endif %}">Registro</a>
+        </div>
+
+        <div class="form-box">
+            <h2>Entrar</h2>
+
+            {% if error %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %}
+
+            <form method="POST">
+                <label for="username_or_email">Usuário ou Email:</label><br>
+                <input type="text" name="username_or_email" required><br><br>
+
+                <label for="password">Senha:</label><br>
+                <input type="password" name="password" required><br><br>
+
+                <div class="captcha-wrapper">
+                    <div class="g-recaptcha" data-sitekey="6Lcf1RkrAAAAAL9XvOPLYOC5rR9QiV2z7DdNCWak"></div><br>
+                </div>
+
+                    <button type="submit">Entrar</button>
+            </form>
+            <div class="links-abaixo">
+                <p>Não tem uma conta? <a href="{{ url_for('register') }}">Cadastre-se aqui</a></p>
+                <p><a href="{{ url_for('forgot_password') }}">Esqueci minha senha</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

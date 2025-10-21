@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parabéns!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/parabens.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="icon" href="/static/img/logo laranja.png">
+</head>
+<body>
+    <div class="container">
+        <div class="mascote-fala">
+            <div class="fala">Parabéns! Você concluiu os exercícios da introdução!</div>
+            <img src="/static/img/kiki.png" alt="Mascote" class="mascote" />
+        </div>
+        <h1>Excelente trabalho, {{ username }}!</h1>
+        <p>Você demonstrou grande habilidade ao completar todos os desafios.</p>
+        <p>Sua introdução final obteve a nota:</p>
+        <div class="score-display">{{ essay_score }}</div>
+        <p>Continue praticando para aprimorar ainda mais suas habilidades!</p>
+        <a href="{{ url_for('welcome') }}" class="home-button">Voltar ao Início</a>
+    </div>
+
+    
+
+<script src="/static/script/correction.js"></script>
+    </body>
+</html>

@@ -1,0 +1,302 @@
+/* Adicione as seguintes regras no seu CSS */
+.sound-btn {
+    position: fixed; /* Mantenha o botão no canto da tela */
+    top: 100px;
+    right: 20px;
+    background-color: #e07e44;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 100; /* Garante que fique acima de outros elementos */
+    transition: transform 0.2s ease;
+}
+
+.sound-btn:hover {
+    transform: scale(1.1);
+}
+
+* {
+    margin: 0;
+    font-family: Arial;
+    box-sizing: border-box;
+}
+
+header {
+    padding: 15px;
+    background-color: #4b024b;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    z-index: 1000;
+    top: 0;
+}
+
+.sidebar ul li a i {
+    margin-right: 8px;
+    color: #6a4b8a;
+    text-align: center;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+    
+.logo span {
+    color: #e07e44;
+}
+
+.texto {
+    margin: 0 auto;
+}
+
+header > p {
+    font-size: 25px;
+}
+
+#menu-btn {
+    position: static;
+    font-size: 25px;
+    background: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px 10px;
+    margin-right: 10px;
+    z-index: 1100;
+    width: 50px;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #fcf7f3;
+    color: black;
+    height: calc(100vh - 80px);
+    padding: 10px 0;
+    position: fixed;
+    top: 80px;
+    left: -250px;
+    transition: 0.3s;
+    z-index: 999;
+    border-right: 1px solid #eee;
+    font-size: 20px;
+    overflow-x: hidden;
+    box-shadow: 2px 0 8px #0001;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.sidebar ul li a:hover {
+    color: blueviolet;
+    transform: scale(1.1);
+}
+
+.sidebar ul li a.active {
+    background-color: #e6d9f2;
+    color: blueviolet;
+}
+
+.sidebar-text {
+    margin-left: 18px;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.2s, margin 0.2s;
+}
+
+.perfil-pequeno {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sidebar.open ~ .main-content {
+    margin-left: 220px;
+}
+
+.user {
+    color: rgb(27, 14, 26);
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+}
+
+.user-container {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 5px 15px;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.balloon {
+    position: absolute;
+    bottom: 40vh;
+    right: 7%;
+    width: 15%;
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-size: 15px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.balloon strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.fox-img {
+    position: absolute;
+    bottom: 50px;
+    right: 30%;
+    width: 200px;
+}
+
+main {
+    background-image: url('/static/img/fundoInicio.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: calc(100vh - 80px);
+    margin-top: 80px;
+    position: relative;
+    margin-left: 0;
+}
+
+.main-content {
+    transition: margin-left 0.3s;
+}
+
+.buraco-arvore {
+    position: absolute;
+    right: 8%;
+    bottom: 6%;
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    z-index: 10;
+    background-color: transparent;
+}
+
+.buraco-arvore:hover ~ .balloon {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+
+@media (max-width: 768px) {
+    header {
+        position: relative; /* ADICIONE ESTA LINHA */
+        justify-content: space-between; /* ADICIONE ESTA LINHA */
+    }
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 22px;
+        z-index: 1000;
+        margin: 0;
+    }
+  
+    .texto {
+        display: none;
+    }
+  
+    .user-container {
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+    }
+  
+    .user-container .user {
+        display: none;
+    }
+  
+    .perfil-pequeno {
+        width: 36px;
+        height: 36px;
+        margin: 0;
+    }
+  
+    #menu-btn {
+        margin: 0;
+    }
+    main{
+        margin-top: 0;
+        padding: 20px;
+        align-items: center;
+        min-height: 100vh; 
+    }.fox-img {
+        width: 150px;
+        right: 20%;
+        bottom: 100px;
+    }
+    
+    .buraco-arvore {
+        width: 200px;
+        height: 150px;
+        right: 5%;
+        bottom: 8%;
+    }
+    
+    .balloon {
+        width: 80%;
+        right: 10%;
+        bottom: 30vh;
+        font-size: 14px;
+    }
+    
+    .sound-btn {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+  }
+  

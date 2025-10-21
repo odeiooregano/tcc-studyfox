@@ -1,0 +1,820 @@
+:root {
+  --roxo: #6b3e6b;
+  --laranja: #e07e44;
+  --amarelo: #fff78a;
+  --fundo: #f8f9fa;
+  --fonte: 'Poppins', sans-serif;
+}
+
+header {
+  background: linear-gradient(135deg, #844a96, #2c3e50); /* igual ao .hero */
+  color: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  background: var(--fundo);
+  color: #333;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1830px;
+  margin: 0 auto;
+  padding: 0 10px;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  backdrop-filter: blur(12px);
+  padding: 1rem 0;
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+
+
+.logo {
+font-size: 1.8rem;
+font-weight: 700;
+color: #fff;
+text-decoration: none;
+}
+
+.logo span {
+color: #e07e44;
+}
+
+
+.logo:hover{
+  cursor: default;
+}
+
+.nav-links {
+display: flex;
+list-style: none;
+}
+
+
+.nav-links li {
+margin-left: 30px;
+}
+
+
+.nav-links a {
+color: white;
+text-decoration: none;
+font-weight: 500;
+transition: color 0.3s;
+}
+
+
+.nav-links a:hover {
+color: #d67433;
+}
+
+.hero {
+  color: white;
+  padding: 5rem 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  flex: 1 1 100%;
+  text-align: center;
+}
+
+
+.hero-contenti {
+max-width: 800px;
+background-color: #8f4f8c80;
+border-radius: 10%;
+margin-right: 3rem;
+}
+
+
+.hero h1 {
+font-size: 2.8rem;
+margin-bottom: 1rem;
+}
+
+
+.hero p {
+font-size: 1.2rem;
+margin-bottom: 2rem;
+opacity: 0.9;
+}
+
+
+.note-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/static/img/cortica.png'); /* Caminho da sua imagem de fundo */
+  background-repeat: no-repeat;
+  background-position: center top; /* Ajusta a posição da imagem para o centro e topo */
+  background-size: contain; /* Redimensiona a imagem para caber completamente dentro do elemento */
+  padding: 8rem 2rem;
+  max-width: 1200px;
+  min-height: 950px; /* Você pode precisar ajustar isso dependendo do conteúdo */
+  margin: 0 auto;
+}
+
+.cortica-wrapper {
+  width: 100%;
+  max-width: 800px; /* Limita a largura do wrapper das notas */
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem; /* Espaçamento entre as notas */
+  justify-items: center; /* Centraliza as notas no grid */
+  z-index: 1;
+}
+
+.cortica {
+  display: grid;
+  gap: 2rem;
+  justify-items: center;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Colunas responsivas */
+}
+
+.post-it {
+  background: var(--amarelo); /* Usa a variável CSS para a cor de fundo */
+  box-shadow: 4px 6px 10px rgba(0,0,0,0.15); /* Sombra para dar profundidade */
+  padding: 2rem;
+  width: 200px; /* Largura fixa para as notas */
+  border-radius: 10px;
+  transform: rotate(-1.5deg); /* Leve rotação para um efeito mais natural */
+  position: relative; /* Necessário para posicionar o pseudo-elemento */
+}
+
+.post-it:nth-child(2) { transform: rotate(3deg);}
+.post-it:nth-child(3) { transform: rotate(-2deg);}
+.post-it:nth-child(4) { transform: rotate(2deg);}
+
+.post-it::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, #aaa 60%, #fff 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+
+.mesa {
+  position: relative;
+  padding: 5rem 0;
+  text-align: center;
+  overflow: visible;
+}
+
+.mesa-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  object-fit: cover;
+}
+
+.livro-animado {
+  position: absolute;
+  left: 50%;
+  bottom: 80px;
+  transform: translateX(-50%);
+  width: 340px;
+  height: 220px;
+  perspective: 1200px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease;
+}
+
+.pagina {
+  position: absolute;
+  width: 170px;
+  height: 220px;
+  background: #fffbe8;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  border-radius: 10px 5px 5px 10px;
+  top: 0;
+  transition: transform 0.7s cubic-bezier(.77,0,.18,1), opacity 0.7s;
+  z-index: -1;
+}
+.pagina.esquerda {
+  left: 0;
+  transform-origin: right center;
+  background: linear-gradient(to left, #f4ecd8 60%, #fffbe8 100%);
+}
+.pagina.direita {
+  right: 0;
+  transform-origin: left center;
+  background: linear-gradient(to right, #f4ecd8 60%, #fffbe8 100%);
+}
+
+/* .capaEsquerda {
+  width: 200px;
+  height: 250px;
+  border-left: 10px;
+  left: 0;
+  transform-origin: right center;
+  background: linear-gradient(to left, #8f4f8c80 60%, #8f4f8c80 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  border-radius: 10px 5px 5px 10px;
+}
+.capaDireita {
+  width: 200px;
+  height: 250px;
+  right: 0;
+  transform-origin: left center;
+  background: linear-gradient(to right, #8f4f8c80 60%, #8f4f8c80 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  border-radius: 10px 5px 5px 10px;
+} */
+
+
+
+.faq {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.faq-item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  margin: 0 auto 1.2rem auto;
+  max-width: 600px;
+  transition: box-shadow 0.3s;
+  overflow: hidden;
+}
+
+.faq-item.open {
+  box-shadow: 0 4px 18px rgba(107,62,107,0.14);
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--roxo, #6b3e6b);
+  text-align: left;
+  padding: 1.2rem 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.faq-question:hover,
+.faq-item.open .faq-question {
+  background: #f0eafc;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  background: #f9f6ff;
+  color: #444;
+  font-size: 1rem;
+  padding: 0 1rem;
+  transition: max-height 0.4s cubic-bezier(.77,0,.18,1), padding 0.3s;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 200px; /* ajuste conforme o conteúdo */
+  padding: 1rem;
+}
+
+
+.footer {
+  background: var(--roxo);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+.equipe {
+  background-color: #f0eafc;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.equipe h2 {
+  font-size: 2rem;
+  color: var(--roxo);
+  margin-bottom: 2rem;
+}
+
+.membros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.membro {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  width: 180px;
+  transition: transform 0.3s ease;
+}
+
+.membro:hover {
+  transform: scale(1.05);
+}
+
+.membro img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.8rem;
+}
+
+.membro h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #6b3e6b;
+}
+
+.miolo {
+  /* Remove o bloco .miolo aninhado pois estava incorreto */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 220px;
+  height: 160px;
+  transform: translate(-50%, -50%);
+  /* background: #fffbe8;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1); */
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.8s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+
+.livro-animado.aberto .miolo {
+  opacity: 1;
+}
+
+.conteudo-livro h2 {
+  font-size: 1rem;
+  color: #7b4a1e;
+  margin-bottom: 0.5rem;
+}
+
+.conteudo-livro p {
+  font-size: 0.9rem;
+  color: #5c3b21;
+  margin-bottom: 1rem;
+}
+
+.btn-biblioteca {
+  background-color: var(--laranja);
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.btn-biblioteca:hover {
+  background-color: #d6651f;
+}
+
+
+
+
+.menu-toggle {
+  margin-right: 5%;
+  display: none; /* Escondido por padrão em telas grandes */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 101; /* Acima da navbar */
+}
+
+.menu-toggle .bar {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Estilos para a sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -280px; /* Escondida fora da tela */
+  width: 250px; /* Largura da sidebar */
+  height: 100%;
+  background: var(--roxo); /* Cor de fundo da sidebar */
+  padding-top: 60px; /* Espaço para não cobrir o topo */
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease-in-out;
+  z-index: 99; /* Abaixo do menu-toggle mas acima do conteúdo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar.open {
+  right: 0; /* Mostra a sidebar */
+}
+
+.sidebar .nav-links {
+  flex-direction: column; /* Links da sidebar em coluna */
+  width: 100%;
+  padding: 0;
+}
+
+.sidebar .nav-links li {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.sidebar .nav-links a {
+  padding: 15px 0;
+  display: block;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
+
+.sidebar .nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Esconder os links da navbar em desktop se você os tiver duplicado para a sidebar */
+.navbar .nav-links.desktop-nav {
+  display: flex;
+}
+
+
+/* Smartphones (até 767px) */
+@media (max-width: 767px) {
+  .navbar {
+    flex-direction: row; /* Volta a ser row para logo e toggle */
+    justify-content: space-between;
+    padding: 1rem 0.5rem;
+  }
+
+  .navbar .nav-links.desktop-nav {
+    display: none; /* Esconde os links normais da navbar em mobile */
+  }
+
+  .menu-toggle {
+    display: flex; /* Mostra o botão hamburger em mobile */
+  }
+
+  /* Ajustes existentes de responsividade para outras seções */
+  .hero {
+    flex-direction: column;
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    flex: 1 1 auto;
+  }
+
+  .hero-contenti {
+    margin-right: 0;
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-contenti img {
+    max-width: 80%;
+    height: auto;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .note-board {
+    padding: 1.5vw;
+    min-height: 70vw;
+    background-size: 90% auto;
+    background-position: center top;
+  }
+
+  .cortica-wrapper {
+    max-width: 85vw;
+    padding-top: 1.5vw;
+  }
+
+  .cortica {
+    margin-top: 20%;
+    grid-template-columns: repeat(2, minmax(35vw, 1fr));
+    gap: 0.8vw;
+  }
+
+  .post-it {
+    width: 60%;
+    padding: 1.2vw;
+    font-size: 2.0vw;
+    box-shadow: 0.4vw 0.4vw 1.2vw rgba(0,0,0,0.08);
+    border-radius: 1vw;
+    transform: rotate(-1.5deg);
+  }
+  .post-it:nth-child(2) { transform: rotate(3deg);}
+  .post-it:nth-child(3) { transform: rotate(-2deg);}
+  .post-it:nth-child(4) { transform: rotate(2deg);}
+
+
+  /* Ajustes para a "tachinha" no post-it */
+  .post-it::before {
+    width: 2vw;
+    height: 2vw;
+    top: 0.8vw;
+  }
+
+  .mesa-img {
+    max-height: 200px;
+  }
+
+  .livro-animado {
+    bottom: 50px;
+    width: 280px;
+    height: 180px;
+  }
+
+  .pagina {
+    width: 140px;
+    height: 180px;
+  }
+
+  .miolo {
+    width: 180px;
+    height: 140px;
+  }
+
+  .conteudo-livro h2 {
+    font-size: 0.9rem;
+  }
+
+  .conteudo-livro p {
+    font-size: 0.8rem;
+  }
+
+  .btn-biblioteca {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .faq {
+    padding: 2rem 1rem;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+    padding: 1rem 0.8rem;
+  }
+
+  .faq-answer {
+    font-size: 0.9rem;
+  }
+
+  .equipe {
+    padding: 2rem 1rem;
+  }
+
+  .equipe h2 {
+    font-size: 1.8rem;
+  }
+
+  .membros {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .membro {
+    width: 80%;
+    max-width: 250px;
+  }
+}
+
+/* Tablets (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .navbar {
+    padding: 1rem 20px;
+    flex-direction: row; /* Assegura que a navbar continua horizontal */
+    justify-content: space-between; /* Ajusta o espaçamento */
+  }
+
+  .navbar .nav-links.desktop-nav {
+    margin-right: 7%;
+    display: flex; /* Garante que os links apareçam em tablets */
+  }
+
+  .menu-toggle {
+    display: none; /* Esconde o botão hamburger em tablets */
+  }
+
+  .nav-links li {
+    margin-left: 20px;
+  }
+
+  .hero {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 4rem 20px;
+  }
+
+  .hero-content,
+  .hero-contenti {
+    flex: 1 1 45%;
+    max-width: none;
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+
+  .hero-contenti {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+  }
+
+  .hero-contenti img {
+    max-width: 90%;
+    height: auto;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .note-board {
+    padding: 2.5vw;
+    min-height: 65vw;
+    background-size: 85% auto;
+  }
+
+  .cortica-wrapper {
+    max-width: 75vw;
+  }
+
+  .cortica {
+    margin-top: 10%;
+    margin-left: 3%;
+    grid-template-columns: repeat(3, minmax(11vw, 1fr));
+    gap: 1.0vw;
+  }
+
+  .post-it {
+    width: 70%;
+    padding: 1.0vw;
+    font-size: 1.5vw;
+    box-shadow: 0.4vw 0.4vw 1.2vw rgba(0,0,0,0.1);
+    border-radius: 0.8vw;
+  }
+  .post-it::before {
+    width: 1.8vw;
+    height: 1.8vw;
+    top: 0.7vw;
+  }
+
+  .livro-animado {
+    bottom: 60px;
+    width: 300px;
+    height: 200px;
+  }
+
+  .pagina {
+    width: 150px;
+    height: 200px;
+  }
+
+  .miolo {
+    width: 200px;
+    height: 150px;
+  }
+
+  .conteudo-livro h2 {
+    font-size: 0.9rem;
+  }
+
+  .conteudo-livro p {
+    font-size: 0.8rem;
+  }
+
+  .btn-biblioteca {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .faq {
+    padding: 2.5rem 20px;
+  }
+
+  .membro {
+    width: 160px;
+  }
+}
+
+/* Desktops (1024px e acima) */
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 1rem 20px;
+    flex-direction: row; /* Assegura a navbar horizontal */
+    justify-content: space-between;
+  }
+
+  .navbar .nav-links.desktop-nav {
+    display: flex; /* Garante que os links apareçam em desktops */
+  }
+
+  .menu-toggle {
+    display: none; /* Esconde o botão hamburger em desktops */
+  }
+
+  .hero {
+    padding: 5rem 20px;
+  }
+
+  .hero-content {
+    text-align: left;
+    margin: 0;
+  }
+
+  .hero-contenti {
+    margin-right: 3rem;
+  }
+
+  .note-board {
+    padding: 8rem 2rem;
+    min-height: 950px;
+    background-size: cover;
+  }
+
+  .cortica {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .post-it {
+    width: 200px;
+    padding: 2rem;
+    font-size: 1rem;
+    transform: rotate(-1.5deg);
+  }
+  .post-it:nth-child(2) { transform: rotate(3deg);}
+  .post-it:nth-child(3) { transform: rotate(-2deg);}
+  .post-it:nth-child(4) { transform: rotate(2deg);}
+
+  .post-it::before {
+    width: 16px;
+    height: 16px;
+    top: 8px;
+  }
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/introducao.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" href="/static/img/logo laranja.png">
+    <title>Fase 1 - Perguntas</title>
+</head>
+
+
+
+<body>
+    <button class="btn-exit" onclick="confirmExit()">&#10005;</button>
+
+    <div class="progress-bar">
+        <div class="progress-bar-inner">
+            <div class="progress-bar-fill" style="width: 30%;"></div>
+        </div>
+    </div>
+
+    <div id="exercicio-pergunta" class="conteudo-flex">
+        <div class="linha-centro">
+            <div class="mascote-area">
+                <div class="fala">Leia e responda com atenção!</div>
+                <img src="/static/img/kiki.png" alt="Mascote" class="mascote" />
+            </div>
+
+            <div class="texto-com-lacunas">
+                <p id="texto-dinamico">
+                    </p>
+                <div id="feedback-lacunas" class="feedback-message mt-4"></div>
+                <div id="opcoes-container" class="opcoes-lacunas-container">
+                    </div>
+                <div class="opcoes mt-4">
+                    <button id="btn-verificar-lacunas" class="btn-verificar" onclick="verificarRespostasLacunas()">Verificar</button>
+                    <button id="btn-proximo-lacunas" class="btn-proximo oculto" onclick="proximoExercicioLacunas()">Próximo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="exercicio-ordenacao" class="conteudo-flex oculto">
+        <div class="linha-centro">
+            <div class="mascote-area">
+                <div class="fala" id="fala-ordenacao">Reorganize as frases na ordem correta.</div>
+                <img src="/static/img/kiki.png" alt="Mascote" class="mascote" />
+            </div>
+            <div class="drag-and-drop-container">
+                <ul id="sortable-list" class="sortable-list">
+                </ul>
+                <div id="feedback-ordem" class="feedback-message my-4"></div>
+                <div class="opcoes">
+                    <button id="btn-verificar-ordem" class="btn-verificar" onclick="verificarOrdem()">Verificar
+                        Ordem</button>
+                    <button id="btn-proximo-ordem" class="btn-proximo oculto" onclick="proximoExercicioOrdem()">Próximo
+                        Exercício</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="exercicio2" class="conteudo-flex oculto">
+        <div class="linha-centro">
+            <div class="mascote-area">
+                <div class="fala">Use as palavras e crie sua introdução! O tema é: A exposição exagerada no ambiente
+                    virtual</div>
+                <img src="/static/img/kiki.png" alt="Mascote" class="mascote" />
+            </div>
+
+            <div class="bloco-escrita">
+                <h3>Palavras-chave para usar:</h3>
+
+                <ul id="palavras-chave" class="list-disc pl-5 text-gray-700">
+                    <li>Redes sociais</li>
+                    <li>Privacidade</li>
+                    <li>Exposição exagerada</li>
+                    <li>Internet</li>
+                    <li>Saúde mental</li>
+                </ul>
+                <textarea id="texto-introducao-usuario" rows="10"
+                    placeholder="Contextualize, problematize e defina sua tese..."
+                    class="w-full mt-4 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out shadow-sm"></textarea>
+            </div>
+        </div>
+
+        <div class="action-buttons-container" style="text-align: center; margin-top: 15px;">
+            <button class="game-button secondary" id="corrigirComIaBtn">
+                <span class="icon">🤖</span> Corrigir com IA
+            </button>
+            <a href="{{ url_for('welcome') }}">
+            <button class="game-button primary" >
+                <span class="icon">🛡️</span> Finalizar
+            </button>
+        </a>
+        </div>
+
+        <div id="loadingIndicator" class="loading-indicator my-6"></div>
+        <div id="errorMessage" class="error-message oculto">
+            <strong class="font-bold">Erro!</strong>
+            <span class="block sm:inline" id="errorText"></span>
+        </div>
+
+        <!-- Contêiner para os resultados da correção pela IA -->
+        <div id="correctionResultsContainer" class="correction-results-container oculto">
+            <div class="result-block corrected-text">
+                <h2>Introdução Corrigida:</h2>
+                <p id="correctedText"></p>
+            </div>
+
+            <div class="result-block score">
+                <h2>Nota (0-200):</h2>
+                <span id="score" class="text-5xl font-extrabold"></span>
+            </div>
+
+            <div class="result-block suggestions">
+                <h2>Sugestões de Melhoria:</h2>
+                <ul id="suggestionsList">
+                    <!-- As sugestões serão inseridas aqui via JavaScript -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+   
+  <button id="sound-btn" class="sound-btn">
+      <i id="sound-icon" class="fas fa-volume-up"></i>
+    </button>
+
+    <audio id="background-audio" loop>
+      <source src="{{ url_for('static', filename='audio/audio2.mp3') }}" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+  </div>
+
+   
+
+  
+    <script src="/static/script/correction.js"></script>
+    <script src="/static/script/fase1_logic.js"></script>
+    <script>
+        const lacunas = {{ texto | tojson }};
+    </script>
+</body>
+
+</html>

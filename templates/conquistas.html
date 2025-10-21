@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conquistas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/conquistas.css" />
+    <link rel="icon" href="/static/img/logo laranja.png">
+    
+   
+</head>
+<body class="body">
+    <header>
+        <button id="menu-btn">&#9776;</button>
+        <p class="logo"><span>Study</span>Fox</p>
+        <p class="texto">Conquistas</p>
+        <div class="user-container">
+            <img 
+            class="perfil-pequeno"
+            src="{{ foto_perfil if foto_perfil else url_for('static', filename='img/fotosperfil/perfil2.png') }}?{{ random() }}"
+            alt="Foto de Perfil">
+            <p class="user">{{ username }}</p>
+        </div>
+    </header>
+ <button id="sound-btn" class="sound-btn">
+            <i id="sound-icon" class="fas fa-volume-up"></i>
+        </button>
+    <div id="sidebar" class="sidebar">
+        <ul>
+            <li>
+                <a href="{{ url_for('welcome') }}" title="Aprender">
+                    <i class="fas fa-book"></i>
+                    <span class="sidebar-text">Aprender</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('biblioteca') }}" title="Biblioteca">
+                    <i class="fas fa-book-open"></i>
+                    <span class="sidebar-text">Biblioteca</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('conquistas') }}" title="Conquistas">
+                    <i class="fas fa-bullseye"></i>
+                    <span class="sidebar-text">Conquistas</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('perfil') }}" title="Perfil">
+                    <i class="fas fa-user"></i>
+                    <span class="sidebar-text">Perfil</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Notificação de Conquista Desbloqueada (Mantido fixo no canto superior direito) -->
+    <div id="achievementNotification" class="notification">
+        <p class="notification-title">Conquista Desbloqueada!</p>
+        <p id="notificationText" class="notification-description"></p>
+    </div>
+
+    <div class="container">
+        <!-- Nó central fixo -->
+        <div class="node node-core" id="core" onclick="showInfo('core')">
+            Você
+
+        </div>
+        
+        <div class="node node-main intro" id="intro" style="top: 18%; left: 50%; transform: translate(-50%, 0);" onclick="showInfo('intro')">Introdução</div>
+        <div class="node node-main des locked" id="des" style="top: 40%; right: 25%;" onclick="showInfo('des')">Desenvolvimento</div>
+        <div class="node node-main conc locked" id="conc" style="bottom: 18%; left: 50%; transform: translate(-50%, 0);" onclick="showInfo('conc')">Conclusão</div>
+        <div class="node node-main red locked" id="red" style="top: 40%; left: 25%;" onclick="showInfo('red')">Redação</div>
+        
+        <!-- Sub-conquistas da Introdução -->
+        <div class="node sub-node intro" id="intro1" style="top: 10%; left: 35%;" onclick="showInfo('intro1')">Pesquisa</div>
+        <div class="node sub-node intro locked" id="intro2" style="top: 5%; left: 50%; transform: translate(-50%, 0);" onclick="showInfo('intro2')">Roteiro</div>
+        <div class="node sub-node intro locked" id="intro3" style="top: 10%; left: 65%;" onclick="showInfo('intro3')">Revisão</div>
+        
+        <!-- Sub-conquistas do Desenvolvimento -->
+        <div class="node sub-node des locked" id="des1" style="top: 30%; right: 20%;" onclick="showInfo('des1')">Argumentos</div>
+        <div class="node sub-node des locked" id="des2" style="top: 55%; right: 20%;" onclick="showInfo('des2')">Exemplos</div>
+        <div class="node sub-node des locked" id="des3" style="top: 42%; right: 17%;" onclick="showInfo('des3')">Dados</div>
+        
+        <!-- Sub-conquistas da Conclusão -->
+        <div class="node sub-node conc locked" id="conc1" style="bottom: 10%; left: 35%;" onclick="showInfo('conc1')">Síntese</div>
+        <div class="node sub-node conc locked" id="conc2" style="bottom: 5%; left: 50%; transform: translate(-50%, 0);" onclick="showInfo('conc2')">Proposta</div>
+        <div class="node sub-node conc locked" id="conc3" style="bottom: 10%; left: 65%;" onclick="showInfo('conc3')">Finalização</div>
+        
+        <!-- Sub-conquistas da Redação -->
+        <div class="node sub-node red locked" id="red1" style="top: 30%; left: 20%;" onclick="showInfo('red1')">Rascunho</div>
+        <div class="node sub-node red locked" id="red2" style="top: 55%; left: 20%;" onclick="showInfo('red2')">Correção</div>
+        <div class="node sub-node red locked" id="red3" style="top: 42%; left: 17%;" onclick="showInfo('red3')">Versão Final</div>
+
+        <!-- Caixa de informações -->
+        <div class="info-box" id="infoBox">
+            <span class="close-btn" onclick="closeInfoBox()">&times;</span>
+            <h3 id="infoTitle">Título</h3>
+            <div class="progress">
+                <div class="progress-bar" id="infoProgress">0%</div>
+            </div>
+            <p id="infoDesc">Descrição</p>
+            <p id="infoStatus" class="info-status"></p> <!-- Novo para exibir o status -->
+        </div>
+    </div>
+<audio id="background-audio" autoplay loop>
+    <source src="{{ url_for('static', filename='audio/audio.mp3') }}" type="audio/mpeg">
+    Seu navegador não suporta a tag de áudio.
+</audio>
+
+    <script src="/static/script/conquista.js"></script>
+</body>
+</html>

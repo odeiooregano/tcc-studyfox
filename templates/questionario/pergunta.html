@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pergunta.css') }}">
+    <link rel="icon" href="/static/img/logo laranja.png">
+</head>
+<body>
+    <div class="questionario-container">
+        
+        <div class="balao-fala">
+            <h2>{{ pergunta }}</h2>
+        </div>
+        
+        <div class="personagem">
+            <img src="/static/img/kiki.png" alt="Personagem" class="personagem-imagem">
+        </div>
+
+        <div class="form"> 
+            <form method="POST">
+                {% for valor, opcao in opcoes %}
+                <label class="opcao">
+                    <input type="radio" name="resposta" value="{{ valor }}" required>
+                    {{ opcao }}
+                </label>
+                {% endfor %}
+                <button type="submit">Próxima</button>
+            </form>
+        </div>
+    </div>
+
+   
+
+    <div id="caderno-direito">
+        <div id="pagina-texto"></div>
+    </div>
+
+    <div id="caderno-esquerdo">
+        <div id="pagina-final"></div>
+    </div>
+
+    <script>
+        const etapaAtual = Number({{ etapa }});
+        const ultimaEtapa = {{ 'true' if ultima_etapa else 'false' }};
+      
+        const textosPorEtapa = {
+            1: {
+                'a': 'O novo escritor do Studyfox se prepara para o começo da jornada, com o conhecimento amplo sobre a arte das redações, ',
+                'b': 'O novo escritor do Studyfox se prepara para o começo da jornada, com o conhecimento mediano sobre a arte das redações, ',
+                'c': 'O novo escritor do Studyfox se prepara para o começo da jornada, sem conhecimento sobre a arte das redações, '
+            },
+            2: {
+                'a': 'tem grande tempo livre, tenho certeza de que aprenderá muito, ',
+                'b': 'mesmo com seu tempo livre limitado, tenho certeza de que aprenderá muito, ',
+                'c': 'mesmo com seu tempo livre extremamente limitado, tenho certeza de que aprenderá muito, '
+            },
+            3: {
+                'a': 'assim superando seu rival, a introdução na escrita. ',
+                'b': 'assim superando seu rival, o desenvolvimento na escrita. ',
+                'c': 'assim superando seu rival, a conclusão na escrita. '
+            }
+        };
+      
+        const pagina = document.getElementById('pagina-texto');
+        const inputs = document.querySelectorAll('input[name="resposta"]');
+      
+        let timeoutAtual = null; // Armazena o timeout da digitação anterior
+
+function escreverComoMaos(textoAnterior, novoTrecho, elemento, velocidade = 40) {
+    if (timeoutAtual) clearTimeout(timeoutAtual); // Cancela qualquer digitação anterior
+
+    let i = 0;
+    elemento.textContent = textoAnterior;
+
+    function escreverLetra() {
+        if (i < novoTrecho.length) {
+            elemento.textContent += novoTrecho.charAt(i);
+            i++;
+            timeoutAtual = setTimeout(escreverLetra, velocidade + Math.random() * 30);
+        }
+    }
+
+    escreverLetra();
+}
+      
+        function exibirTextoAnterior() {
+            let texto = '';
+            for (let etapa = 1; etapa < etapaAtual; etapa++) {
+                const resposta = sessionStorage.getItem(`etapa${etapa}`);
+                if (resposta && textosPorEtapa[etapa]?.[resposta]) {
+                    texto += textosPorEtapa[etapa][resposta];
+                }
+            }
+            pagina.textContent = texto;
+        }
+      
+        exibirTextoAnterior();
+      
+        inputs.forEach(input => {
+            input.addEventListener('change', () => {
+                const valor = input.value;
+                sessionStorage.setItem(`etapa${etapaAtual}`, valor);
+      
+                let textoAnterior = '';
+                for (let etapa = 1; etapa < etapaAtual; etapa++) {
+                    const resposta = sessionStorage.getItem(`etapa${etapa}`);
+                    if (resposta && textosPorEtapa[etapa]?.[resposta]) {
+                        textoAnterior += textosPorEtapa[etapa][resposta];
+                    }
+                }
+      
+                const novoTrecho = (textosPorEtapa[etapaAtual] && textosPorEtapa[etapaAtual][valor]) || '';
+                sessionStorage.setItem('textoCaderno', textoAnterior + novoTrecho);
+                escreverComoMaos(textoAnterior, novoTrecho, pagina, 35);
+            });
+        });
+      
+        if (ultimaEtapa) {
+            const questionario = document.getElementById('questionario-container');
+            const cadernoEsquerdo = document.getElementById('caderno-esquerdo');
+            const paginaFinal = document.getElementById('pagina-final');
+      
+            if (questionario && cadernoEsquerdo && paginaFinal) {
+                questionario.style.display = 'none';
+                cadernoEsquerdo.style.display = 'block';
+      
+                const textoFinal = sessionStorage.getItem('textoCaderno') || '';
+                paginaFinal.textContent = textoFinal;
+            }
+        }
+      </script> 
+      
+    
+    
+</body>
+</html>

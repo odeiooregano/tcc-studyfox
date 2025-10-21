@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyFox</title>
+  <link rel="stylesheet" href="/static/css/inicio.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" type="image/png" href="/static/img/logo laranja.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="#" class="logo"><span>Study</span>Fox</a>
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+
+      <ul class="nav-links desktop-nav">
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('register') }}">Cadastro</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+      <ul class="nav-links">
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('register') }}">Cadastro</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </aside>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Aprenda a fazer redações de forma gamificada</h1>
+        <p>StudyFox foi desenvolvido com o objetivo de otimizar o aprendizado de estudantes, oferecendo uma maneira
+          divertida e segura de se aprender a escrever uma redação.</p>
+      </div>
+      <div class="hero-contenti">
+        <img src="/static/img/kiki.png" alt="">
+      </div>
+    </section>
+  </header>
+
+  <section id="sobre" class="note-board">
+    <div class="cortica-wrapper">
+      <div class="cortica">
+        <div class="post-it">Corrija com IA, aprenda e evolua a cada redação</div>
+        <div class="post-it">Estudo por competências</div>
+        <div class="post-it">Biblioteca de repertórios</div>
+        <div class="post-it">Gamificação com desafios</div>
+        <div class="post-it">Pratique redação toda semana</div>
+        <div class="post-it">Experimente a versão mobile</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mesa" id="mesa">
+    <img src="/static/img/mesa2.png" alt="Mesa" class="mesa-img" loading="lazy" />
+    <div class="livro-animado" id="livroAnimado">
+      <div class="capaEsquerda">
+        <div class="pagina esquerda"></div>
+      </div>
+      <div class="capaDireita">
+        <div class="pagina direita"></div>
+      </div>
+      <div class="miolo">
+        <div class="conteudo">
+          <h3>Biblioteca de Repertórios</h3>
+          <p>
+            Explore exemplos prontos, citações e repertórios para turbinar sua redação!
+            <br><br>
+            <a href="{{ url_for('register') }}" class="btn-biblioteca">Crie uma conta!</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="faq" id="faq">
+    <h2>Perguntas Frequentes</h2>
+    <div class="faq-item">
+      <button class="faq-question">Como funciona o StudyFox?</button>
+      <div class="faq-answer">
+        <p>O StudyFox avalia sua redação com base nos critérios do ENEM e dá feedback em tempo real.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Preciso pagar para usar?</button>
+      <div class="faq-answer">
+        <p>Não, o uso é totalmente gratuito!</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Posso usar no celular?</button>
+      <div class="faq-answer">
+        <p>Sim, o StudyFox é responsivo e funciona em qualquer dispositivo.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Posso enviar quantas redações quiser?</button>
+      <div class="faq-answer">
+        <p>Uma por fase, podendo ser a introdução, desenvolvimento e conclusão, se for inteira, uma por dia.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Quais critérios do ENEM são avaliados?</button>
+      <div class="faq-answer">
+        <p>É baseada em cinco competências, cada uma com uma pontuação de 0 a 200, totalizando 1000 pontos. 1) Domínio
+          da língua portuguesa;
+          2) Compreensão da proposta;
+          3) Organização e defesa dos argumentos;
+          4) Conhecimento dos mecanismos linguísticos; e
+          5) Apresentar uma proposta de intervenção. </p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Vocês corrigem outros tipos de texto além do ENEM?</button>
+      <div class="faq-answer">
+        <p>Por enquanto, usamos apenas a estrutura dissertativa-argumentativa, que vale para diversos vestibulares.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Posso ver exemplos de redações corrigidas?</button>
+      <div class="faq-answer">
+        <p>Durante as fases, exemplos são mostrados.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 StudyFox. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="/static/script/inicio.js"></script>
+  <script src="/static/script/load_fox_3d_inicio.js"></script>
+</body>
+
+</html>

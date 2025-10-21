@@ -1,0 +1,99 @@
+   /* Variáveis de Cor (para uso direto no HTML/inline, se necessário, mas idealmente via CSS externo) */
+   :root {
+    --roxo-principal: #744ea6;
+    --laranja-principal: #F2671F;
+    --roxo-escuro-hover: #5c3f8d;
+    --cinza-escuro-texto: #333;
+    --verde-sucesso: #28a745;
+    --fonte-principal: 'Comfortaa', cursive;
+    --fonte-titulos: 'Poppins', sans-serif;
+    --fonte-corpo: 'Nunito', sans-serif;
+}
+
+body {
+    font-family: var(--fonte-corpo); /* Using font from introducao.css */
+    background: url("/static/img/fundo.png") no-repeat center center fixed; /* Consistent background */
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: var(--cinza-escuro-texto); /* Consistent text color */
+    text-align: center;
+}
+.container {
+    width: 700px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    box-sizing: border-box;
+}
+h1 {
+    font-family: var(--fonte-titulos); /* Using title font from introducao.css */
+    color: var(--roxo-principal); /* Using primary purple from introducao.css */
+    margin-bottom: 20px;
+    font-size: 2.2em;
+}
+p {
+    font-family: var(--fonte-corpo); /* Using body font from introducao.css */
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+.score-display {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: var(--verde-sucesso); /* Consistent success color */
+    margin: 30px 0;
+}
+.home-button {
+    width: 95%;
+    padding: 12px;
+    background-color: var(--roxo-principal); /* Consistent button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+.home-button:hover {
+    background-color: var(--roxo-escuro-hover); /* Consistent hover color */
+}
+.mascote-fala {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.mascote-fala img {
+    width: 100px;
+    height: auto;
+}
+.fala {
+    background-color: #e0f7fa; /* Still a light background for the bubble */
+    border-radius: 15px;
+    padding: 15px 25px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    font-family: var(--fonte-principal); /* Consistent speech bubble font */
+}
+.fala::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #e0f7fa;
+    bottom: -15px;
+    left: 20px;
+}

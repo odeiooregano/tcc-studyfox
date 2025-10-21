@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+    <link rel="icon" href="/static/img/logo laranja.png">
+</head>
+<body>
+    <header>
+        <button id="menu-btn">&#9776;</button>
+        <p class="logo"><span>Study</span>Fox</p>
+        <p class="texto">Seja Bem-Vindo!</p>
+        <div class="user-container">
+            <img
+            class="perfil-pequeno"
+            src="{{ foto_perfil if foto_perfil else url_for('static', filename='img/fotosperfil/perfil2.png') }}?{{ random() }}"
+            alt="Foto de Perfil">
+            <p class="user">{{ username }}</p>
+        </div>
+    
+    </header>
+
+    <div id="sidebar" class="sidebar">
+        <ul>
+            <li>
+                <a href="{{ url_for('welcome') }}" title="Aprender">
+                    <i class="fas fa-book"></i>
+                    <span class="sidebar-text">Aprender</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('biblioteca') }}" title="Biblioteca">
+                    <i class="fas fa-book-open"></i>
+                    <span class="sidebar-text">Biblioteca</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('conquistas') }}" title="Conquistas">
+                    <i class="fas fa-bullseye"></i>
+                    <span class="sidebar-text">Conquistas</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('perfil') }}" title="Perfil">
+                    <i class="fas fa-user"></i>
+                    <span class="sidebar-text">Perfil</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <main>
+        <img src="/static/img/kiki.png" alt="Raposa com livro" class="fox-img">
+        <a class="buraco-arvore" href="{{ url_for('fase1_intro') }}">
+            <div></div>
+        </a>
+            <button id="sound-btn" class="sound-btn">
+            <i id="sound-icon" class="fas fa-volume-up"></i>
+        </button>
+        <div class="balloon">
+            <strong>INTRODUÇÃO</strong>
+            Sua missão é criar um começo interessante e claro, que mostre o tema de forma breve e
+            envolvente. Lembre-se: uma boa introdução é o primeiro passo para uma redação de sucesso!
+        </div>
+    </main>
+
+<audio id="background-audio" autoplay loop>
+    <source src="{{ url_for('static', filename='audio/audio.mp3') }}" type="audio/mpeg">
+    Seu navegador não suporta a tag de áudio.
+</audio>
+
+
+
+    <script src="{{ url_for('static', filename='script/welcome.js') }}"></script>
+</body>
+</html>

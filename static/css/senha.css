@@ -1,0 +1,117 @@
+/* Centralizar a página */
+body {
+    font-family: Arial, sans-serif;
+    background: url("../img/fundo.png") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container geral */
+.form-container {
+    width: 700px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+
+    /* Sombra elegante */
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+
+
+}
+.form-box h2 {
+    font-size: 16px; /* Ajuste o tamanho da fonte conforme necessário */
+    font-weight: normal;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+
+/* Aba de navegação (tabs) */
+.tabs {
+    display: flex;
+    background-color: #744ea6;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Cada aba */
+.tabs a {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.61);
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+}
+
+/* Aba ativa */
+.tabs a.active {
+    background-color: #744ea6;
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+/* Conteúdo do formulário */
+.form-box {
+    padding: 30px;
+}
+
+.form-box label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #744ea6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-box button:hover {
+    background-color: #654194;
+}
+.links-abaixo {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.links-abaixo a {
+    color: black;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+.form-box label {
+    display: block;
+    margin-bottom: 6px; /* Espaço entre label e input */
+    font-weight: bold;
+}
+
+.form-box input {
+    width: 100%;
+    padding: 12px; /* Um pouco mais de espaço dentro do input */
+    margin-bottom: 20px; /* Deixa espaço entre os campos mais uniforme */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que padding não ultrapasse o container */
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fase1.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" href="/static/img/logo laranja.png">
+  <title>Fase 1 - Introdução</title>
+</head>
+
+<body>
+  <button class="btn-exit" onclick="confirmExit()">&#10005;</button>
+
+  <div class="progress-bar">
+    <div class="progress-bar-inner">
+      <div class="progress-bar-fill" style="width: 0%;"></div>
+    </div>
+  </div>
+
+  <div class="conteudo-flex">
+    <div class="mascote-area" id="mascote-area">
+      <div id="fala-do-mascote" class="fala">Olá! Clique em continuar.</div>
+      <img src="/static/img/kiki.png" alt="Mascote" class="mascote" />
+    </div>
+
+    <div id="texto-explicativo" class="texto-explicativo oculto">
+      <h2>Impactos das Fake News na sociedade brasileira</h2>
+      <p>
+        No contexto da sociedade contemporânea, marcada pela intensa circulação de informações nas redes sociais, a
+        propagação das chamadas fake news — notícias falsas ou manipuladas com a intenção de desinformar — tem se
+        consolidado como um dos principais desafios enfrentados pela democracia brasileira. A filósofa
+        <span class="hannah-arendt" onclick="mostrarModal()">Hannah Arendt</span> já alertava que
+        “o ideal totalitário é fazer com que as pessoas não consigam mais distinguir entre fato e ficção”.
+        Tal reflexão torna-se atual diante do impacto que as notícias falsas exercem na formação da opinião pública,
+        no enfraquecimento das instituições democráticas e na ampliação de conflitos sociais. Diante disso, é urgente
+        refletir sobre as consequências dessa desinformação sistemática e como ela compromete o convívio social e político no Brasil.
+      </p>
+    </div>
+
+    <div id="modal-overlay" class="overlay escondido" onclick="fecharModal()">
+      <div id="card-hannah" class="card-hannah" onclick="event.stopPropagation()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Hannah_Arendt_1933.jpg" alt="Hannah Arendt" />
+        <h3>Hannah Arendt</h3>
+        <p>Filósofa política judia alemã, conhecida por suas análises sobre totalitarismo, autoridade e liberdade.</p>
+        <button onclick="fecharModal()">Fechar</button>
+      </div>
+    </div>
+
+    <div class="botoes-fixas">
+      <div class="botoes">
+        <button class="btn-secundario" onclick="voltarFala()">Voltar</button>
+        <button class="btn-primary" onclick="proximaFala()">Continuar</button>
+      </div>
+    </div>
+
+    <button id="sound-btn" class="sound-btn">
+      <i id="sound-icon" class="fas fa-volume-up"></i>
+    </button>
+
+    <audio id="background-audio" loop>
+      <source src="{{ url_for('static', filename='audio/audio2.mp3') }}" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+  </div>
+
+  <script src="{{ url_for('static', filename='script/fase1_intro.js') }}"></script>
+</body>
+</html>
